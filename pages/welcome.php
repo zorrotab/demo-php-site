@@ -5,9 +5,9 @@
     <title>Welcome</title>
 </head>
 <body>
-<?php if ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
-    Welcome <?php echo htmlspecialchars($_POST["name"] ?? 'Guest'); ?><br>
-    Your email address is: <?php echo htmlspecialchars($_POST["email"] ?? 'N/A'); ?>
+<?php if ($_SERVER['REQUEST_METHOD'] === 'GET'): ?>
+    Welcome <?php echo htmlspecialchars($_GET["name"] ?? 'Guest'); ?><br>
+    Your email address is: <?php echo htmlspecialchars($_GET["email"] ?? 'N/A'); ?>
 <?php else: ?>
     <p>No data submitted.</p>
 <?php endif; ?>

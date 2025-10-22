@@ -5,7 +5,7 @@
     <title>Home</title>
 </head>
 <body>
-    <form action="/welcome" method="POST">
+    <form action="/iam" method="POST">
         Name: <input type="text" name="name"><br>
         E-mail: <input type="text" name="email"><br>
         <input type="submit" value="Submit">

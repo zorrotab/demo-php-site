@@ -7,6 +7,7 @@ class Router {
         $this->routes = [
             'home' => 'pages/home.php',
             'welcome' => 'pages/welcome.php',
+            'iam' => 'iam.php',
         ];
     }
 
