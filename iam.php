@@ -1,7 +1,17 @@
 <?php
-echo "This script was triggered by direct URL access.";
 
+$action = urlencode($_POST['action'] ?? '');
 $name = urlencode($_POST['name'] ?? '');
-$email = urlencode($_POST['email'] ?? '');
-header("Location: /welcome?name=$name&email=$email");
+$password = urlencode($_POST['password'] ?? '');
+
+echo $action;
+
+if ($action === 'Login') {
+    header("Location: /welcome?name=$name&password=$password");
+} elseif ($action === 'Register') {
+        echo "Registering user";
+} else {
+    http_response_code(404);
+    echo "404 Not Found";
+}
 ?>
