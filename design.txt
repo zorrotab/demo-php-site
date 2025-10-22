@@ -1,0 +1,4 @@
+User can login into the web page using an existing login (username and password) or otherwise register a new username
+
+Users are saved in an sqllite DB - passwords are plain text for now
+
