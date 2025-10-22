@@ -13,6 +13,6 @@ sudo apt install php
 ## Running php server
 
 ```sh
-# Run test.php at localhost:8080
-php -S localhost:8080 test.php
+# Run index.php at localhost:8080
+php -S localhost:8080 index.php
 ```
