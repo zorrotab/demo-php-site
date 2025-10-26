@@ -16,6 +16,9 @@ sudo apt install php php-sqlite3
 # On first use, run init.php to create database and perform other initial tasks
 php init.php
 
+# Run to print current users
+php run.php
+
 # Run index.php at localhost:8080
 php -S localhost:8080 index.php
 ```
