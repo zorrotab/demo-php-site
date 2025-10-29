@@ -5,10 +5,14 @@
     <title>Welcome</title>
 </head>
 <body>
-<?php if ($_SERVER['REQUEST_METHOD'] === 'GET'): ?>
-    Welcome <?php echo htmlspecialchars($_GET["name"] ?? 'Guest'); ?><br>
-<?php else: ?>
-    <p>No data submitted.</p>
-<?php endif; ?>
+    <?php if ($_SERVER['REQUEST_METHOD'] === 'GET'): ?>
+        Welcome <?php echo htmlspecialchars($_GET["name"] ?? 'Guest'); ?><br>
+    <?php else: ?>
+        <p>No data submitted.</p>
+    <?php endif; ?>
+
+    <form action="/home" method="POST">
+        <input type="submit" name="action" value="Logout">
+    </form>
 </body>
 </html>
