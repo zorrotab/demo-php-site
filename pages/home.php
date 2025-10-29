@@ -14,11 +14,9 @@
 
 <?php if ($_GET['loginState'] === 'registered'): ?>
     User is already registered in the system.
-<?php endif; ?>
-<?php if ($_GET['loginState'] === 'invalidCredentials'): ?>
+<?php elseif ($_GET['loginState'] === 'invalidCredentials'): ?>
     Invalid username or password.
-<?php endif; ?>
-<?php if ($_GET['loginState'] === 'registerSuccess'): ?>
+<?php elseif ($_GET['loginState'] === 'registerSuccess'): ?>
     User registered.
 <?php endif; ?>
 </body>
