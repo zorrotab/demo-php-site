@@ -12,16 +12,24 @@ class MyDB extends SQLite3 {
    }   $db = new MyDB();
    if(!$db) {
       echo $db->lastErrorMsg();
-   } else {
-      echo "Opened database successfully\n";
-}
-
+   }
 
 # Check login credentials
 if ($action === 'Login') {
-    header("Location: /welcome?name=$name&password=$password");
+    $stmt = $db->prepare('SELECT * FROM USERS WHERE NAME = :name');
+    $stmt->bindValue(':name', $name, SQLITE3_TEXT);
+    $ret = $stmt->execute();
+    while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+        if ($row['NAME'] === $name && $row['PASSWORD'] === $password) {
+            $db->close();
+            header("Location: /welcome?name=$name");
+        }
+    }
+    $loginState = 'invalidCredentials';
+    $db->close();
+    header("Location: /home?loginState=$loginState");
 
-# Check if user already exists
+# Check if user already exists for registration
 } elseif ($action === 'Register') {
     $stmt = $db->prepare('SELECT NAME FROM USERS WHERE NAME = :name');
     $stmt->bindValue(':name', $name, SQLITE3_TEXT);
@@ -30,19 +38,16 @@ if ($action === 'Login') {
     while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
         if ($row['NAME'] === $name) {
             $userExists = true;
+            $db->close();
             break;
         }
     }
-
-    # Inform that user already exists
+    # If user already exists, inform operator
     if ($userExists) {
-        echo "user already exists\n";
+        $loginState = 'registered';
+        header("Location: /home?loginState=$loginState");
 
-        # TO DO
-        # Redirect to home.php
-        # Add box for return result
-
-    # Create new user
+    # Else create new user
     } else {
         # Get unique id
         $stmt = $db->prepare('SELECT COUNT(*) as count FROM USERS');
@@ -59,7 +64,8 @@ if ($action === 'Login') {
         if(!$ret) {
             echo $db->lastErrorMsg();
         } else {
-            echo "user created\n";
+            $loginState = 'registerSuccess';
+            header("Location: /home?loginState=$loginState");
         }
         $db->close();
     }
