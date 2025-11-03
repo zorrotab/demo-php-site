@@ -1,3 +1,0 @@
-Tasks:
-1. Improve home.php and welcome.php design
-2. Add some activity for users to do in welcome.php
